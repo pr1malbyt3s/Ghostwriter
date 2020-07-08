@@ -84,48 +84,40 @@ class Finding(models.Model):
         unique=True,
         help_text='Enter a title for this finding that will appear in the '
         'reports')
-    description = HTMLField(
-        'Description',
+    recommendation = HTMLField(
+        'Recommendation',
+        null=True,
+        blank=True,
+        help_text='Provide a recommendation for how this finding can be resolved or addressed')
+    source = HTMLField(
+        'Source',
+        null=True,
+        blank=True,
+        help_text='Provide an explanation for how the finding was discovered')
+    tools = HTMLField(
+        'tools',
+        null=True,
+        blank=True,
+        help_text='List which tools were used to help identify the finding')
+    details = HTMLField(
+        'Details',
         null=True,
         blank=True,
         help_text='Provide a description for this finding that introduces it')
-    impact = HTMLField(
-        'Impact',
+    risk_determination = HTMLField(
+        'Risk Determination',
         help_text='Describe the impact of this finding on the affected '
         'entities',
         null=True,
         blank=True)
-    mitigation = HTMLField(
-        'Mitigation',
-        null=True,
-        blank=True,
-        help_text='Describe how this finding can be resolved or addressed')
-    replication_steps = HTMLField(
-        'Replication Steps',
-        null=True,
-        blank=True,
-        help_text='Provide an explanation for how the reader may reproduce '
-        'this finding')
-    host_detection_techniques = HTMLField(
-        'Host Detection Techniques',
-        null=True,
-        blank=True,
-        help_text='Describe how this finding can be detected on an endpoint '
-        '- leave blank if this does not apply')
-    network_detection_techniques = HTMLField(
-        'Network Detection Techniques',
-        null=True,
-        blank=True,
-        help_text='Describe how this finding can be detected on a network '
-        '- leave blank if this does not apply')
     references = HTMLField(
         'References',
         null=True,
         blank=True,
         help_text='Provide solid references for this finding, such as links '
         'to reference materials, tooling, and white papers')
-    finding_guidance = models.TextField(
-        'Finding Guidance',
+    additional_guidance = models.TextField(
+        'Additional Guidance',
         null=True,
         blank=True,
         help_text='Provide notes for your team that describes how the finding '
@@ -241,48 +233,40 @@ class ReportFindingLink(models.Model):
         blank=True,
         help_text='Provide a list of the affected entities (e.g. domains, '
         'hostnames, IP addresses)')
-    description = models.TextField(
-        'Description',
+    recommendation = HTMLField(
+        'Recommendation',
+        null=True,
+        blank=True,
+        help_text='Provide a recommendation for how this finding can be resolved or addressed')
+    source = HTMLField(
+        'Source',
+        null=True,
+        blank=True,
+        help_text='Provide an explanation for how the finding was discovered')
+    tools = HTMLField(
+        'tools',
+        null=True,
+        blank=True,
+        help_text='List which tools were used to help identify the finding')
+    details = HTMLField(
+        'Details',
         null=True,
         blank=True,
         help_text='Provide a description for this finding that introduces it')
-    impact = models.TextField(
-        'Impact',
-        null=True,
-        blank=True,
+    risk_determination = HTMLField(
+        'Risk Determination',
         help_text='Describe the impact of this finding on the affected '
-        'entities')
-    mitigation = models.TextField(
-        'Mitigation',
+        'entities',
         null=True,
-        blank=True,
-        help_text='Describe how this finding can be resolved or addressed')
-    replication_steps = models.TextField(
-        'Replication Steps',
-        null=True,
-        blank=True,
-        help_text='Provide an explanation for how the reader may reproduce '
-        'this finding')
-    host_detection_techniques = models.TextField(
-        'Host Detection Techniques',
-        null=True,
-        blank=True,
-        help_text='Describe how this finding can be detected on an endpoint '
-        '- leave blank if this does not apply')
-    network_detection_techniques = models.TextField(
-        'Network Detection Techniques',
-        null=True,
-        blank=True,
-        help_text='Describe how this finding can be detected on a network '
-        '- leave blank if this does not apply')
+        blank=True)
     references = HTMLField(
         'References',
         null=True,
         blank=True,
         help_text='Provide solid references for this finding, such as links '
         'to reference materials, tooling, and white papers')
-    finding_guidance = models.TextField(
-        'Finding Guidance',
+    additional_guidance = models.TextField(
+        'Additional Guidance',
         null=True,
         blank=True,
         help_text='Provide notes for your team that describes how the finding '
