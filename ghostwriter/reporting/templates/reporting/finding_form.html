@@ -107,25 +107,6 @@
         <!-- Spacer -->
         <p style="margin: 40px;"></p>
 
-        <!-- Defender Section -->
-        <strong><i class="fas fa-shield-alt"></i> Defender Information</strong>
-        <hr>
-
-        {{ form.mitigation.label }}
-        {{ form.mitigation }}<br />
-
-        {{ form.replication_steps.label }}
-        {{ form.replication_steps }}<br />
-
-        {{ form.host_detection_techniques.label }}
-        {{ form.host_detection_techniques }}<br />
-
-        {{ form.network_detection_techniques.label }}
-        {{ form.network_detection_techniques }}<br />
-
-        <!-- Spacer -->
-        <p style="margin: 40px;"></p>
-
         <!-- Reference Section -->
         <strong><i class="fas fa-link"></i> Reference Materials</strong>
         <hr>
@@ -133,8 +114,8 @@
         {{ form.references.label }}
         {{ form.references }}<br />
 
-        {{ form.finding_guidance.label }}
-        {{ form.finding_guidance }}<br />
+        {{ form.additional_guidance.label }}
+        {{ form.additional_guidance }}<br />
 
         <input type="submit" class="btn btn-primary" value="Submit">
         <button onclick="window.history.back();" class="btn btn-secondary" type="button">Cancel</button>
