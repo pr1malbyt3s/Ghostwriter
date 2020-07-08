@@ -18,10 +18,38 @@ docker-compose -f local.yml run --rm django python manage.py migrate
 __Be sure to understand and properly alter all model links when preparing to make migrations__
 Fields edited:
 - `finding_guidance` changed to `additional_guidance` in the `Finding` and `ReportFindingLink` classes.
+- `description` changed to `details`
+- `mitigation` changed to `recommendation`
+- `source` added
+- `tools` added
+- `impact` changed to `risk_determination`
+- `replication_steps` removed
+- `host_detection_techniques` removed
+- `network_detection_techniques` removed
 
 ### Backend
 Certain backend scripts are used to process front-end request variables and create labels for HTML rendering. For altering findings fields, these files are located in `/ghostwriter/reporting`. The following changes were made:
-- `forms.py`: `finding_guidance` changed to `additional_guidance`.
+- `forms.py`: 
+  - `finding_guidance` changed to `additional_guidance`.
+  - `description` changed to `details`
+  - `impact` changed to `risk_determination`
+  - `mitigation` changed to `recommendation`
+  - `source` added
+  - `tools` added`
+  - `replication_steps` removed
+  - `host_detection_techniques` removed
+  - `network_detection_techniques` removed
+- `admin.py` FindingAdmin class:
+  - `description` changed to `details`
+  - `impact` changed to `risk_determination`
+  - `mitigation` changed to `recommendation`
+  - `source` added
+  - `tools` added`
+  - `replication_steps` removed
+  - `host_detection_techniques` removed
+  - `network_detection_techniques` removed
+- `views.py` assign_blank_finding function:
+- `views.py` assign_finding function:
 - `/migrations/0005_reportfindinglink_finding_guidance.py`: `finding_guidance` changed to `additional_guidance`
 
 ### HTML
