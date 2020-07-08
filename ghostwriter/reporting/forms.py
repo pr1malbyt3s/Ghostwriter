@@ -29,21 +29,19 @@ class FindingCreateForm(forms.ModelForm):
         super(FindingCreateForm, self).__init__(*args, **kwargs)
         self.fields['title'].widget.attrs['placeholder'] = \
             'SQL Injection'
-        self.fields['description'].widget.attrs['placeholder'] = \
-            'What is this ...'
-        self.fields['impact'].widget.attrs['placeholder'] = \
-            'What is the impact ...'
-        self.fields['mitigation'].widget.attrs['placeholder'] = \
+        self.fields['recommendation'].widget.attrs['placeholder'] = \
             'What needs to be done ...'
-        self.fields['replication_steps'].widget.attrs['placeholder'] = \
-            'How to reproduce/find this issue ...'
-        self.fields['host_detection_techniques'].\
-            widget.attrs['placeholder'] = 'How to detect it on an endpoint ...'
-        self.fields['network_detection_techniques'].\
-            widget.attrs['placeholder'] = 'How to detect it on a network ...'
+        self.fields['source'].widget.attrs['placeholder'] = \
+            'What was the source ...'
+        self.fields['tools'].widget.attrs['placeholder'] = \
+            'What tools were used ...'
+        self.fields['details'].widget.attrs['placeholder'] = \
+            'What is this ...'
+        self.fields['risk_determination'].widget.attrs['placeholder'] = \
+            'What is the impact ...'
         self.fields['references'].widget.attrs['placeholder'] = \
             'Some useful links and references ...'
-        self.fields['finding_guidance'].widget.attrs['placeholder'] = \
+        self.fields['additional_guidance'].widget.attrs['placeholder'] = \
             'When using this finding in a report be sure to include ...'
         self.helper = FormHelper()
         self.helper.form_class = 'form-inline'
