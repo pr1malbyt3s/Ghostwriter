@@ -18,9 +18,8 @@ class FindingAdmin(ImportExportModelAdmin):
             'fields': ('severity', 'title', 'finding_type')
         }),
         ('Finding Details', {
-            'fields': ('description', 'impact', 'mitigation',
-                       'replication_steps', 'host_detection_techniques',
-                       'network_detection_techniques', 'references')
+            'fields': ('details', 'risk_determination', 'recommendation',
+                       'source', 'tools', 'references')
         })
     )
 
