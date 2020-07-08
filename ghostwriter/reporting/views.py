@@ -317,19 +317,15 @@ def assign_finding(request, pk):
             return HttpResponseRedirect(reverse('reporting:findings'))
         finding = Finding.objects.get(pk=pk)
         report_link = ReportFindingLink(title=finding.title,
-                                        description=finding.description,
-                                        impact=finding.impact,
-                                        mitigation=finding.mitigation,
-                                        replication_steps=finding.
-                                        replication_steps,
-                                        host_detection_techniques=finding.
-                                        host_detection_techniques,
-                                        network_detection_techniques=finding.
-                                        network_detection_techniques,
+                                        details=finding.details,
+                                        risk_determination=finding.risk_determination,
+                                        recommendation=finding.recommendation,
+                                        source=finding.source,
+                                        tools=finding.tools,
                                         references=finding.references,
                                         severity=finding.severity,
                                         finding_type=finding.finding_type,
-                                        finding_guidance=finding.finding_guidance,
+                                        additional_guidance=finding.additional_guidance,
                                         report=report,
                                         assigned_to=request.user,
                                         position=get_position(
@@ -374,12 +370,11 @@ def assign_blank_finding(request, pk):
                        extra_tags='alert-danger')
         return HttpResponseRedirect(reverse('reporting:reports'))
     report_link = ReportFindingLink(title='Blank Template',
-                                    description='',
-                                    impact='',
-                                    mitigation='',
-                                    replication_steps='',
-                                    host_detection_techniques='',
-                                    network_detection_techniques='',
+                                    details='',
+                                    risk_determination='',
+                                    recommendation='',
+                                    source='',
+                                    tools='',
                                     references='',
                                     severity=info_sev,
                                     finding_type=FindingType.objects.
