@@ -240,8 +240,8 @@
             </div>
             <div id="collapseGuidance" class="collapse" aria-labelledby="guidance" data-parent="#accordion">
                 <div class="card-body">
-                    {% if reportfindinglink.finding_guidance %}
-                        <p>{{ reportfindinglink.finding_guidance }}</p>
+                    {% if reportfindinglink.additional_guidance %}
+                        <p>{{ reportfindinglink.additional_guidance }}</p>
                     {% else %}
                         <p>No guidance was provided for this finding in the library.</p>
                     {% endif %}
@@ -359,24 +359,15 @@
         <!-- Spacer -->
         <p style="margin: 40px;"></p>
 
-        <!-- Description Section -->
+        <!-- Details Section -->
         <strong><i class="fas fa-pencil-alt"></i> Descriptions</strong>
         <hr>
-
-        {{ form.description|as_crispy_field }}
-        {{ form.impact|as_crispy_field }}
-
-        <!-- Spacer -->
-        <p style="margin: 40px;"></p>
-
-        <!-- Defender Section -->
-        <strong><i class="fas fa-shield-alt"></i> Defender Information</strong>
-        <hr>
-
-        {{ form.mitigation|as_crispy_field }}
-        {{ form.replication_steps|as_crispy_field }}
-        {{ form.host_detection_techniques|as_crispy_field }}
-        {{ form.network_detection_techniques|as_crispy_field }}
+        
+        {{ form.recommendation|as_crispy_field }}
+        {{ form.source|as_crispy_field }}
+        {{ form.tools|as_crispy_field }}
+        {{ form.details|as_crispy_field }}
+        {{ form.risk_determination|as_crispy_field }}
 
         <!-- Spacer -->
         <p style="margin: 40px;"></p>
