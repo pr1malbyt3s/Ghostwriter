@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='reportfindinglink',
-            name='finding_guidance',
-            field=models.TextField(blank=True, help_text='Provide notes for your team that describes how the finding is intended to be used and any details that should be provided during editing', null=True, verbose_name='Finding Guidance'),
+            name='additional_guidance',
+            field=models.TextField(blank=True, help_text='Provide notes for your team that describes how the finding is intended to be used and any details that should be provided during editing', null=True, verbose_name='Additional Guidance'),
         ),
     ]
