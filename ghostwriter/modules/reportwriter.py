@@ -1125,7 +1125,8 @@ class Reportwriter():
             self.spenny_doc.add_heading('Recommendation', 4)
             self.process_text_xml(
                 finding['recommendation'],
-                finding)self.spenny_doc.add_heading('Details', 4)
+                finding)
+            self.spenny_doc.add_heading('Details', 4)
             # Add a Details section that may also include evidence figures
             self.process_text_xml(finding['details'], finding)
             # Create Risk Determination section
