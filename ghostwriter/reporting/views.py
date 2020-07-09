@@ -994,12 +994,11 @@ def convert_finding(request, pk):
         finding_instance = get_object_or_404(ReportFindingLink, pk=pk)
         form = FindingCreateForm(initial={
                 'title': finding_instance.title,
-                'description': finding_instance.description,
-                'impact': finding_instance.impact,
-                'mitigation': finding_instance.mitigation,
-                'replication_steps': finding_instance.replication_steps,
-                'host_detection_techniques': finding_instance.host_detection_techniques,
-                'network_detection_techniques': finding_instance.network_detection_techniques,
+                'details': finding_instance.details,
+                'risk_determination': finding_instance.risk_determination,
+                'recommendation': finding_instance.recommendation,
+                'source': finding_instance.source,
+                'tools': finding_instance.tools,
                 'references': finding_instance.references,
                 'severity': finding_instance.severity,
                 'finding_type': finding_instance.finding_type
