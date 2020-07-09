@@ -1111,42 +1111,28 @@ class Reportwriter():
             # Add an Affected Entities section
             self.spenny_doc.add_heading('Affected Entities', 4)
             self.process_text_xml(finding['affected_entities'], finding)
-            # Add a Description section that may also include evidence figures
-            self.spenny_doc.add_heading('Description', 4)
-            self.process_text_xml(finding['description'], finding)
-            # Create Impact section
-            self.spenny_doc.add_heading('Impact', 4)
+            # Create Source section
+            self.spenny_doc.add_heading('Source', 4)
             self.process_text_xml(
-                finding['impact'],
+                finding['source'],
                 finding)
-            # Create Recommendations section
+            # Create Tools section
+            self.spenny_doc.add_heading('Tools', 4)
+            self.process_text_xml(
+                finding['tools'],
+                finding)
+            # Create Recommendation section
             self.spenny_doc.add_heading('Recommendation', 4)
             self.process_text_xml(
                 finding['recommendation'],
-                finding)
-            # Create Replication section
-            self.spenny_doc.add_heading('Replication Steps', 4)
+                finding)self.spenny_doc.add_heading('Details', 4)
+            # Add a Details section that may also include evidence figures
+            self.process_text_xml(finding['details'], finding)
+            # Create Risk Determination section
+            self.spenny_doc.add_heading('Risk Determination', 4)
             self.process_text_xml(
-                finding['replication_steps'],
+                finding['risk_determination'],
                 finding)
-            # Check if techniques are provided before creating a host
-            # detection section
-            if finding['host_detection_techniques']:
-                # \u2013 is an em-dash
-                self.spenny_doc.add_heading(
-                    u'Adversary Detection Techniques \u2013 Host', 4)
-                self.process_text_xml(
-                    finding['host_detection_techniques'],
-                    finding)
-            # Check if techniques are provided before creating a network
-            # detection section
-            if finding['network_detection_techniques']:
-                # \u2013 is an em-dash
-                self.spenny_doc.add_heading(
-                    u'Adversary Detection Techniques \u2013 Network', 4)
-                self.process_text_xml(
-                    finding['network_detection_techniques'],
-                    finding)
             # Create References section
             if finding['references']:
                 self.spenny_doc.add_heading('References', 4)
