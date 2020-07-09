@@ -11,14 +11,12 @@ class FindingResource(resources.ModelResource):
         model = Finding
         skip_unchanged = True
         fields = (
-            'id', 'title', 'description', 'impact', 'mitigation',
-            'replication_steps', 'host_detection_techniques',
-            'network_detection_techniques', 'references',
-            'finding_guidance'
+            'id', 'title', 'details', 'risk_determination',
+            'recommendation', 'source', 'tools',
+            'references', 'additional_guidance'
             )
         export_order = (
-            'id', 'severity', 'finding_type', 'title', 'description',
-            'impact', 'mitigation', 'replication_steps',
-            'host_detection_techniques', 'network_detection_techniques',
+            'id', 'severity', 'finding_type', 'title', 'details',
+            'risk_determination', 'source', 'tools',
             'references', 'finding_guidance'
             )
