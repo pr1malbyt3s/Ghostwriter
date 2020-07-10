@@ -1043,6 +1043,9 @@ class Reportwriter():
         # Findings information
         context['findings'] = self.report_json['findings'].values()
         for finding in context['findings']:
+            # Added by NorthState
+            #finding['recommendation'] = re.compile(r'<[^>]+>').sub('', finding['recommendation'])
+            finding['recommendation'] = BeautifulSoup(finding['recommendation'], 'lxml').text
             finding_color = self.informational_color
             if finding['severity'].lower() == 'informational':
                 finding_color = self.informational_color
@@ -1133,7 +1136,7 @@ class Reportwriter():
                 finding)
             # Create References section
             if finding['references']:
-                self.spenny_doc.add_heading('References', 4)
+                #self.spenny_doc.add_heading('References', 4)
                 self.process_text_xml(finding['references'], finding)
             counter += 1
             # Check if this is the last finding to avoid an extra blank page
