@@ -140,19 +140,16 @@ class Reportwriter():
             else:
                 report_dict['findings'][finding.id]['affected_entities'] = \
                     '<p>Must Be Provided</p>'
-            report_dict['findings'][finding.id]['description'] = \
-                finding.description
-            report_dict['findings'][finding.id]['impact'] = finding.impact
+            report_dict['findings'][finding.id]['details'] = \
+                finding.details
+            report_dict['findings'][finding.id]['risk_determination'] = \
+                finding.risk_determination
             report_dict['findings'][finding.id]['recommendation'] = \
-                finding.mitigation
-            report_dict['findings'][finding.id]['replication_steps'] = \
-                finding.replication_steps
-            report_dict['findings'][finding.id][
-                'host_detection_techniques'] = \
-                finding.host_detection_techniques
-            report_dict['findings'][finding.id][
-                'network_detection_techniques'] = \
-                finding.network_detection_techniques
+                finding.recommendation
+            report_dict['findings'][finding.id]['source'] = \
+                finding.source
+            report_dict['findings'][finding.id]['tools'] = \
+                finding.tools
             report_dict['findings'][finding.id]['references'] = \
                 finding.references
             # Get any evidence
