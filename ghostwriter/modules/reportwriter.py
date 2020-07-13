@@ -1044,8 +1044,21 @@ class Reportwriter():
         context['findings'] = self.report_json['findings'].values()
         for finding in context['findings']:
             # Added by NorthState
-            #finding['recommendation'] = re.compile(r'<[^>]+>').sub('', finding['recommendation'])
+            # Process Recommendations
             finding['recommendation'] = BeautifulSoup(finding['recommendation'], 'lxml').text
+            # Process Affected Entities
+            finding['affected_entities'] = BeautifulSoup(finding['affected_entities'], 'lxml').text
+            # Process Source section
+            finding['source'] = BeautifulSoup(finding['source'], 'lxml').text
+            # Process Tools section
+            finding['tools'] = BeautifulSoup(finding['tools'], 'lxml').text
+            # Process Details section
+            finding['details'] = BeautifulSoup(finding['details'], 'lxml').text
+            # Process Risk Determination section
+            finding['risk_determination'] = BeautifulSoup(finding['risk_determination'], 'lxml').text
+            # Process References section
+            if finding['references']:
+                finding['references'] = BeautifulSoup(finding['references'], 'lxml').text
             finding_color = self.informational_color
             if finding['severity'].lower() == 'informational':
                 finding_color = self.informational_color
@@ -1058,11 +1071,13 @@ class Reportwriter():
             elif finding['severity'].lower() == 'critical':
                 finding_color = self.critical_color
             finding['color'] = finding_color
-        # Generate the subdocument for findings
+        # Generate the subdocument for findings.
         self.spenny_doc = self.main_spenny_doc.new_subdoc()
         self.generate_finding_subdoc()
         context['findings_subdoc'] = self.spenny_doc
         # Render the Word document + auto-escape any unsafe XML/HTML
+        """Generate a Word document for the current report."""
+        self.spenny_doc.add_page_break()
         self.main_spenny_doc.render(context, autoescape=True)
         # Return the final rendered document
         return self.main_spenny_doc
@@ -1074,14 +1089,15 @@ class Reportwriter():
         for finding in self.report_json['findings'].values():
             # There's a special Heading 3 for the finding title so we don't
             # use `add_heading()` here
-            p = self.spenny_doc.add_paragraph(finding['title'])
+            p = self.spenny_doc.add_paragraph(finding['title'] + ' ' + finding['severity'])
             p.style = 'Heading 3 - Finding'
             # This is Heading 4 but we want to make severity a run to color it
             # so we don't use `add_heading()` here
-            p = self.spenny_doc.add_paragraph()
-            p.style = 'Heading 4'
-            run = p.add_run('Severity – ')
-            run = p.add_run('{}'.format(finding['severity']))
+            #p = self.spenny_doc.add_paragraph()
+            #p.style = 'Heading 4'
+            #run = p.add_run('Severity – ')
+            #run = p.add_run('{}'.format(finding['severity']))
+            '''
             font = run.font
             if finding['severity'].lower() == 'informational':
                 font.color.rgb = RGBColor(
@@ -1108,6 +1124,20 @@ class Reportwriter():
                     self.critical_color_hex[0],
                     self.critical_color_hex[1],
                     self.critical_color_hex[2])
+            '''
+            table = self.spenny_doc.add_table(rows=4, cols=4)
+            row_nums = [0, 1, 3]
+            for num in row_nums:
+                row = table.rows[num]
+                a, b = row.cells[:2]
+                a.merge(b)
+                c, d = row.cells[-2:]
+                c.merge(d)
+            # Add Recommendations
+            table.cell(0, 1).text = 'Recommendation'
+            #recommendation = str(self.process_text_xml(finding['recommendation'], finding))
+            table.cell(0, 1).paragraphs[0].add_run(self.process_text_xml(finding['recommendation'], finding) )
+            #table.cell(0, 2).text = 'Test'
             # Add an Affected Entities section
             self.spenny_doc.add_heading('Affected Entities', 4)
             self.process_text_xml(finding['affected_entities'], finding)
@@ -1136,7 +1166,7 @@ class Reportwriter():
                 finding)
             # Create References section
             if finding['references']:
-                #self.spenny_doc.add_heading('References', 4)
+                self.spenny_doc.add_heading('References', 4)
                 self.process_text_xml(finding['references'], finding)
             counter += 1
             # Check if this is the last finding to avoid an extra blank page
