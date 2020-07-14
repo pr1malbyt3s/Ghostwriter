@@ -873,6 +873,7 @@ class Reportwriter():
             soup = BeautifulSoup(text, 'lxml')
             # Each WYSIWYG field begins with `<html><body>` so get the contents of body
             body = soup.find('body')
+            #return str(body)
             contents_list = body.contents
             # Loop over all bs4.element.Tag objects in the body 
             for tag in contents_list:
@@ -1043,9 +1044,11 @@ class Reportwriter():
         # Findings information
         context['findings'] = self.report_json['findings'].values()
         for finding in context['findings']:
+            
             # Added by NorthState
             # Process Recommendations
             finding['recommendation'] = BeautifulSoup(finding['recommendation'], 'lxml').text
+            '''
             # Process Affected Entities
             finding['affected_entities'] = BeautifulSoup(finding['affected_entities'], 'lxml').text
             # Process Source section
@@ -1059,6 +1062,7 @@ class Reportwriter():
             # Process References section
             if finding['references']:
                 finding['references'] = BeautifulSoup(finding['references'], 'lxml').text
+            '''
             finding_color = self.informational_color
             if finding['severity'].lower() == 'informational':
                 finding_color = self.informational_color
@@ -1089,8 +1093,8 @@ class Reportwriter():
         for finding in self.report_json['findings'].values():
             # There's a special Heading 3 for the finding title so we don't
             # use `add_heading()` here
-            p = self.spenny_doc.add_paragraph(finding['title'] + ' ' + finding['severity'])
-            p.style = 'Heading 3 - Finding'
+            p = self.spenny_doc.add_paragraph(finding['title'] + ' (' + finding['severity'] + ')')
+            p.style = 'Heading 3'
             # This is Heading 4 but we want to make severity a run to color it
             # so we don't use `add_heading()` here
             #p = self.spenny_doc.add_paragraph()
@@ -1124,50 +1128,62 @@ class Reportwriter():
                     self.critical_color_hex[0],
                     self.critical_color_hex[1],
                     self.critical_color_hex[2])
-            '''
-            table = self.spenny_doc.add_table(rows=4, cols=4)
+            # Create top table
+            toptable = self.spenny_doc.add_table(rows=4, cols=4)
+            toptable.style = 'Finding Table'
             row_nums = [0, 1, 3]
             for num in row_nums:
-                row = table.rows[num]
+                row = toptable.rows[num]
                 a, b = row.cells[:2]
                 a.merge(b)
                 c, d = row.cells[-2:]
                 c.merge(d)
-            # Add Recommendations
-            table.cell(0, 1).text = 'Recommendation'
-            #recommendation = str(self.process_text_xml(finding['recommendation'], finding))
-            table.cell(0, 1).paragraphs[0].add_run(self.process_text_xml(finding['recommendation'], finding) )
-            #table.cell(0, 2).text = 'Test'
-            # Add an Affected Entities section
-            self.spenny_doc.add_heading('Affected Entities', 4)
-            self.process_text_xml(finding['affected_entities'], finding)
-            # Create Source section
-            self.spenny_doc.add_heading('Source', 4)
-            self.process_text_xml(
-                finding['source'],
-                finding)
-            # Create Tools section
-            self.spenny_doc.add_heading('Tools', 4)
-            self.process_text_xml(
-                finding['tools'],
-                finding)
-            # Create Recommendation section
+            # Add Risk Rating
+            toptable.cell(0, 0).text = 'Risk Rating'
+            toptable.cell(0, 2).text = finding['severity']
+            # Add Recommendation
+            toptable.cell(1, 0).text = 'Recommendation'
+            toptable.cell(1, 2).text = self.process_text_xml(finding['recommendation'], finding).text
+            # Add Source and Tools
+            toptable.cell(2, 0).text = 'Source'
+            #toptable.cell(2, 1).text = self.process_text_xml(finding['source'], finding)
+            toptable.cell(2, 2).text = 'Tools'
+            #toptable.cell(2, 3).text = self.process_text_xml(finding['tools'], finding)
+            # Add an Affected Entities
+            toptable.cell(3, 1).text = 'System'
+            #toptable.cell(3, 2).text = self.process_text_xml(finding['affected_entities'], finding)
+            # Create bottom table
+            bottomtable = self.spenny_doc.add_table(rows=5, cols=2)
+            bottomtable.cell(0, 0).text = 'Details'
+            #bottomtable.cell(0, 1).text = self.process_text_xml(finding['details'], finding)
+            bottomtable.cell(1, 0).text = 'Risk Determination'
+            bottomtable.cell(1, 1).text = self.process_text_xml(finding['risk_determination'], finding).text
+            bottomtable.cell(2, 0).text = 'Evidence'
+            #bottomtable.cell(2, 1).text = self.process_text_xml(finding['evidence'], finding)
+            bottomtable.cell(3, 0).text = 'Additional Guidance'
+            #bottomtable.cell(3, 1).text = self.process_text_xml(finding['additional_guidance'], finding)
+            bottomtable.cell(4, 0).text = 'References'
+            #bottomtable.cell(4, 1).text = self.process_text_xml(finding['references'], finding)
+            '''
+            self.spenny_doc.add_heading('Risk Rating', 4)
+            self.process_text_xml(finding['severity'], finding)
             self.spenny_doc.add_heading('Recommendation', 4)
-            self.process_text_xml(
-                finding['recommendation'],
-                finding)
+            self.process_text_xml(finding['recommendation'], finding)
+            self.spenny_doc.add_heading('Source', 4)
+            self.process_text_xml(finding['source'], finding)
+            self.spenny_doc.add_heading('Tools', 4)
+            self.process_text_xml(finding['tools'], finding)
+            self.spenny_doc.add_heading('System', 4)
+            self.process_text_xml(finding['affected_entities'], finding)
             self.spenny_doc.add_heading('Details', 4)
-            # Add a Details section that may also include evidence figures
             self.process_text_xml(finding['details'], finding)
-            # Create Risk Determination section
             self.spenny_doc.add_heading('Risk Determination', 4)
-            self.process_text_xml(
-                finding['risk_determination'],
-                finding)
-            # Create References section
-            if finding['references']:
-                self.spenny_doc.add_heading('References', 4)
-                self.process_text_xml(finding['references'], finding)
+            self.process_text_xml(finding['risk_determination'], finding)
+            self.spenny_doc.add_heading('Evidence', 4)
+            self.spenny_doc.add_heading('Additional Guidance', 4)
+            self.spenny_doc.add_heading('References', 4)
+            self.process_text_xml(finding['references'], finding)
+            
             counter += 1
             # Check if this is the last finding to avoid an extra blank page
             if not counter == total_findings:
