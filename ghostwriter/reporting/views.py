@@ -378,7 +378,7 @@ def assign_blank_finding(request, pk):
                                     references='',
                                     severity=info_sev,
                                     finding_type=FindingType.objects.
-                                    get(finding_type='Network'),
+                                    get(finding_type='Internal Network'),
                                     report=report,
                                     assigned_to=request.user,
                                     position=get_position(report))
