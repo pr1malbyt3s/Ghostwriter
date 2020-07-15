@@ -43,14 +43,14 @@
         "model": "reporting.findingtype",
         "pk": 1,
         "fields": {
-            "finding_type": "Network"
+            "finding_type": "Internal Network"
         }
     },
     {
         "model": "reporting.findingtype",
         "pk": 2,
         "fields": {
-            "finding_type": "Physical"
+            "finding_type": "External Network"
         }
     },
     {
@@ -64,14 +64,14 @@
         "model": "reporting.findingtype",
         "pk": 4,
         "fields": {
-            "finding_type": "Web"
+            "finding_type": "Web Application"
         }
     },
     {
         "model": "reporting.findingtype",
         "pk": 5,
         "fields": {
-            "finding_type": "Mobile"
+            "finding_type": "Phishing"
         }
     },
     {
@@ -85,7 +85,7 @@
         "model": "reporting.findingtype",
         "pk": 7,
         "fields": {
-            "finding_type": "Host"
+            "finding_type": "Physical"
         }
     }
   ]
