@@ -50,23 +50,6 @@
     </div>
 
     <div id="accordion" class="myaccordion">
-        <!-- Details -->
-        <div class="card">
-            <div class="card-header" id="description" data-toggle="collapse" data-target="#collapseDescription" aria-expanded="true">
-                <a class="accordion-toggle btn btn-link" data-toggle="collapse" data-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
-                    Details
-                </a>
-            </div>
-            <div id="collapseDescription" class="finding-collapse collapse show" aria-labelledby="description">
-                <div class="finding-card card-body">
-                    {% if finding.details %}
-                        {{ finding.details|safe }}
-                    {% else %}
-                        <p>Details write-up is needed.</p>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
 
         <!-- Risk Determination -->
         <div class="card">
@@ -139,7 +122,41 @@
                 </div>
             </div>
         </div>
-
+      
+        <!-- Details -->
+        <div class="card">
+            <div class="card-header" id="description" data-toggle="collapse" data-target="#collapseDescription" aria-expanded="true">
+                <a class="accordion-toggle btn btn-link" data-toggle="collapse" data-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
+                    Details
+                </a>
+            </div>
+            <div id="collapseDescription" class="finding-collapse collapse show" aria-labelledby="description">
+                <div class="finding-card card-body">
+                    {% if finding.details %}
+                        {{ finding.details|safe }}
+                    {% else %}
+                        <p>Details write-up is needed.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+      
+        <!-- Additional Guidance -->
+        {% if finding.additional_guidance %}
+            <div class="card">
+                <div class="card-header" id="guidance" data-toggle="collapse" data-target="#collapseGuidance" aria-expanded="true">
+                    <a class="accordion-toggle btn btn-link" data-toggle="collapse" data-target="#collapseGuidance" aria-expanded="false" aria-controls="collapseGuidance">
+                        Additional Guidance
+                    </a>
+                </div>
+                <div id="collapseGuidance" class="finding-collapse collapse show" aria-labelledby="guidance">
+                    <div class="finding-card card-body">
+                        {{ finding.additional_guidance|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+      
         <!-- References -->
         <div class="card">
             <div class="card-header" id="reference" data-toggle="collapse" data-target="#collapseReference" aria-expanded="true">
@@ -157,22 +174,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Additional Guidance -->
-        {% if finding.additional_guidance %}
-            <div class="card">
-                <div class="card-header" id="guidance" data-toggle="collapse" data-target="#collapseGuidance" aria-expanded="true">
-                    <a class="accordion-toggle btn btn-link" data-toggle="collapse" data-target="#collapseGuidance" aria-expanded="false" aria-controls="collapseGuidance">
-                        Additional Guidance
-                    </a>
-                </div>
-                <div id="collapseGuidance" class="finding-collapse collapse show" aria-labelledby="guidance">
-                    <div class="finding-card card-body">
-                        {{ finding.additional_guidance|safe }}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
 
         <!-- Notes -->
         <div class="card">
