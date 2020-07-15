@@ -150,6 +150,8 @@ class Reportwriter():
                 finding.source
             report_dict['findings'][finding.id]['tools'] = \
                 finding.tools
+            report_dict['findings'][finding.id]['additional_guidance'] = \
+                finding.additional_guidance
             report_dict['findings'][finding.id]['references'] = \
                 finding.references
             # Get any evidence
