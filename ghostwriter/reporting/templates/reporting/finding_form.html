@@ -95,7 +95,7 @@
         <p style="margin: 40px;"></p>
 
         <!-- Description Section -->
-        <strong><i class="fas fa-pencil-alt"></i> Descriptions</strong>
+        <strong><i class="fas fa-terminal"></i>Finding Description</strong>
         <hr>
         {{ form.recommendation.label }}
         {{ form.recommendation }}<br />
@@ -111,6 +111,9 @@
 
         {{ form.risk_determination.label }}
         {{ form.risk_determination }}<br />
+      
+        {{ form.additional_guidance.label }}
+        {{ form.additional_guidance }}<br />
 
         <!-- Spacer -->
         <p style="margin: 40px;"></p>
@@ -122,8 +125,6 @@
         {{ form.references.label }}
         {{ form.references }}<br />
 
-        {{ form.additional_guidance.label }}
-        {{ form.additional_guidance }}<br />
 
         <input type="submit" class="btn btn-primary" value="Submit">
         <button onclick="window.history.back();" class="btn btn-secondary" type="button">Cancel</button>
