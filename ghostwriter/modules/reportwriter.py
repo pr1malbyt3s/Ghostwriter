@@ -1167,22 +1167,32 @@ class Reportwriter():
             bottomtable.cell(4, 0).text = 'References'
             #bottomtable.cell(4, 1).text = self.process_text_xml(finding['references'], finding)
             '''
-            self.spenny_doc.add_heading('Risk Rating', 4)
+            p = self.spenny_doc.add_paragraph('Risk Rating')
+            p.style = 'Heading 4 - Finding'
             self.process_text_xml(finding['severity'], finding)
-            self.spenny_doc.add_heading('Recommendation', 4)
+            p = self.spenny_doc.add_paragraph('Recommendation')
+            p.style = 'Heading 4 - Finding'
             self.process_text_xml(finding['recommendation'], finding)
-            self.spenny_doc.add_heading('Source', 4)
+            p = self.spenny_doc.add_paragraph('Source')
+            p.style = 'Heading 4 - Finding'
             self.process_text_xml(finding['source'], finding)
-            self.spenny_doc.add_heading('Tools', 4)
+            p = self.spenny_doc.add_paragraph('Tools')
+            p.style = 'Heading 4 - Finding'
             self.process_text_xml(finding['tools'], finding)
-            self.spenny_doc.add_heading('System', 4)
+            p = self.spenny_doc.add_paragraph('System')
+            p.style = 'Heading 4 - Finding'
             self.process_text_xml(finding['affected_entities'], finding)
-            self.spenny_doc.add_heading('Details', 4)
+            p = self.spenny_doc.add_paragraph('Details')
+            p.style = 'Heading 4 - Finding'
             self.process_text_xml(finding['details'], finding)
-            self.spenny_doc.add_heading('Risk Determination', 4)
+            p = self.spenny_doc.add_paragraph('Risk Determination')
+            p.style = 'Heading 4 - Finding'
             self.process_text_xml(finding['risk_determination'], finding)
-            self.spenny_doc.add_heading('Evidence', 4)
-            self.spenny_doc.add_heading('Additional Guidance', 4)
+            p = self.spenny_doc.add_paragraph('Evidence')
+            p.style = 'Heading 4 - Finding'
+            p = self.spenny_doc.add_paragraph('Additional Guidance')
+            p.style = 'Heading 4 - Finding'
+            self.process_text_xml(finding['additional_guidance'], finding)
             self.spenny_doc.add_heading('References', 4)
             self.process_text_xml(finding['references'], finding)
             
