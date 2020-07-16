@@ -1340,7 +1340,7 @@ class Reportwriter():
                     finding['additional_guidance'], wrap_format, finding)
             else:
                 self.worksheet.write(
-                    self.row, self.col, 'N/A' asset_format, finding)
+                    self.row, self.col, 'N/A', asset_format, finding)
             self.col += 1
             # References
             self.process_text_xlsx(
