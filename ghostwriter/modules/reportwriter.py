@@ -1190,10 +1190,12 @@ class Reportwriter():
             self.process_text_xml(finding['risk_determination'], finding)
             p = self.spenny_doc.add_paragraph('Evidence')
             p.style = 'Heading 4 - Finding'
-            p = self.spenny_doc.add_paragraph('Additional Guidance')
+            if finding['additional_guidance']:
+                p = self.spenny_doc.add_paragraph('Additional Guidance')
+                p.style = 'Heading 4 - Finding'
+                self.process_text_xml(finding['additional_guidance'], finding)
+            self.spenny_doc.add_paragraph('References')
             p.style = 'Heading 4 - Finding'
-            self.process_text_xml(finding['additional_guidance'], finding)
-            self.spenny_doc.add_heading('References', 4)
             self.process_text_xml(finding['references'], finding)
             
             counter += 1
