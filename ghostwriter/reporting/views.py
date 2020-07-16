@@ -151,7 +151,7 @@ def findings_list(request):
         findings_list = Finding.objects.\
             select_related('severity', 'finding_type').\
             filter(Q(title__icontains=search_term) |
-                   Q(description__icontains=search_term)).\
+                   Q(details__icontains=search_term)).\
             order_by('severity__weight', 'finding_type', 'title')
     else:
         findings_list = Finding.objects.\
