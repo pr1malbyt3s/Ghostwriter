@@ -134,6 +134,8 @@ class Reportwriter():
             report_dict['findings'][finding.id]['title'] = finding.title
             report_dict['findings'][finding.id]['severity'] = \
                 finding.severity.severity
+            report_dict['findings'][finding.id]['type'] = \
+                finding.type
             if finding.affected_entities:
                 report_dict['findings'][finding.id]['affected_entities'] = \
                     finding.affected_entities
@@ -1265,10 +1267,10 @@ class Reportwriter():
         wrap_format.set_align('vcenter')
         # Create header row for findings
         self.col = 0
-        headers = ['Finding', 'Severity', 'Affected Entities', 'Description',
-                   'Impact', 'Recommendation', 'Replication Steps',
-                   'Host Detection Techniques', 'Network Detection Techniques',
-                   'References', 'Supporting Evidence']
+        headers = ['Risk Rating', 'Component', 'Finding', 'Details',
+                   'Risk Determination', 'Systems', 'Source',
+                   'Tools', 'Recommendation', 'Additional Guidance',
+                   'Evidence', 'References']
         for header in headers:
             self.worksheet.write(0, self.col, header, bold_format)
             self.col += 1
@@ -1280,9 +1282,6 @@ class Reportwriter():
         self.col = 0
         self.row = 1
         for finding in self.report_json['findings'].values():
-            # Finding Name
-            self.worksheet.write(self.row, self.col, finding['title'], wrap_format)
-            self.col += 1
             # Severity
             severity_format = spenny_doc.add_format({'bold': True})
             severity_format.set_align('vcenter')
@@ -1299,9 +1298,23 @@ class Reportwriter():
                 severity_format.set_bg_color(self.high_color)
             elif finding['severity'].lower() == "critical":
                 severity_format.set_bg_color(self.critical_color)
-            self.worksheet.write(self.row, 1, finding['severity'], severity_format)
+            self.worksheet.write(self.row, self.col, finding['severity'], severity_format)
             self.col += 1
-            # Affected Asset
+            # Finding Type
+            self.worksheet.write(self.row, self.col, finding['type'], wrap_format)
+            self.col += 1
+            # Finding Name
+            self.worksheet.write(self.row, self.col, finding['title'], wrap_format)
+            self.col += 1
+            # Details
+            self.process_text_xlsx(
+                finding['details'], wrap_format, finding)
+            self.col += 1
+            # Risk Determination
+            self.process_text_xlsx(
+                finding['risk_determination'], wrap_format, finding)
+            self.col += 1
+             # Affected Asset
             if finding['affected_entities']:
                 self.process_text_xlsx(
                     finding['affected_entities'], asset_format, finding)
@@ -1309,28 +1322,25 @@ class Reportwriter():
                 self.worksheet.write(
                     self.row, self.col, 'N/A', asset_format, finding)
             self.col += 1
-            # Description
+            # Source
             self.process_text_xlsx(
-                finding['description'], wrap_format, finding)
+                finding['source'], wrap_format, finding)
             self.col += 1
-            # Impact
+            # Tools
             self.process_text_xlsx(
-                finding['impact'], wrap_format, finding)
+                finding['tools'], wrap_format, finding)
             self.col += 1
             # Recommendation
             self.process_text_xlsx(
                 finding['recommendation'], wrap_format, finding)
             self.col += 1
-            # Replication
-            self.process_text_xlsx(
-                finding['replication_steps'], wrap_format, finding)
-            self.col += 1
-            # Detection
-            self.process_text_xlsx(
-                finding['host_detection_techniques'], wrap_format, finding)
-            self.col += 1
-            self.process_text_xlsx(
-                finding['network_detection_techniques'], wrap_format, finding)
+            # Additional Guidance
+            if finding['additional_guidance']:
+                self.process_text_xlsx(
+                    finding['additional_guidance'], wrap_format, finding)
+            else:
+                self.worksheet.write(
+                    self.row, self.col, 'N/A' asset_format, finding)
             self.col += 1
             # References
             self.process_text_xlsx(
