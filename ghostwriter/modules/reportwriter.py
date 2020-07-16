@@ -134,8 +134,8 @@ class Reportwriter():
             report_dict['findings'][finding.id]['title'] = finding.title
             report_dict['findings'][finding.id]['severity'] = \
                 finding.severity.severity
-            report_dict['findings'][finding.id]['type'] = \
-                finding.type
+            #report_dict['findings'][finding.id]['type'] = \
+            #    finding.type
             if finding.affected_entities:
                 report_dict['findings'][finding.id]['affected_entities'] = \
                     finding.affected_entities
