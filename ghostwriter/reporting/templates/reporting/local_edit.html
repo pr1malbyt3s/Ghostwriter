@@ -231,24 +231,6 @@
             </div>
         </div>
 
-        <!-- Finding Guidance Section -->
-        <div class="card">
-            <div class="card-header" id="guidance" data-toggle="collapse" data-target="#collapseGuidance">
-                <a class="accordion-toggle btn btn-link" data-toggle="collapse" data-target="#collapseGuidance" aria-expanded="false" aria-controls="collapseGuidance">
-                    <i class="fas fa-map-signs"></i> Finding Guidance
-                </a>
-            </div>
-            <div id="collapseGuidance" class="collapse" aria-labelledby="guidance" data-parent="#accordion">
-                <div class="card-body">
-                    {% if reportfindinglink.additional_guidance %}
-                        <p>{{ reportfindinglink.additional_guidance }}</p>
-                    {% else %}
-                        <p>No guidance was provided for this finding in the library.</p>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
         <!-- Additional Information Section -->
         <div class="card">
             <div class="card-header" id="notes" data-toggle="collapse" data-target="#collapseNotes">
@@ -360,7 +342,7 @@
         <p style="margin: 40px;"></p>
 
         <!-- Details Section -->
-        <strong><i class="fas fa-pencil-alt"></i> Descriptions</strong>
+        <strong><i class="fas fa-terminal"></i> Descriptions</strong>
         <hr>
         
         {{ form.recommendation|as_crispy_field }}
@@ -368,6 +350,7 @@
         {{ form.tools|as_crispy_field }}
         {{ form.details|as_crispy_field }}
         {{ form.risk_determination|as_crispy_field }}
+        {{ form.additional_guidance|as_cripsy_field
 
         <!-- Spacer -->
         <p style="margin: 40px;"></p>
