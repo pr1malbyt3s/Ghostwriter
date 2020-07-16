@@ -1267,7 +1267,8 @@ class Reportwriter():
         wrap_format.set_align('vcenter')
         # Create header row for findings
         self.col = 0
-        headers = ['Risk Rating', 'Component', 'Finding', 'Details',
+        # Need to add component/type.
+        headers = ['Risk Rating', 'Finding', 'Details',
                    'Risk Determination', 'Systems', 'Source',
                    'Tools', 'Recommendation', 'Additional Guidance',
                    'Evidence', 'References']
@@ -1301,8 +1302,8 @@ class Reportwriter():
             self.worksheet.write(self.row, self.col, finding['severity'], severity_format)
             self.col += 1
             # Finding Type
-            self.worksheet.write(self.row, self.col, finding['type'], wrap_format)
-            self.col += 1
+            # self.worksheet.write(self.row, self.col, finding['type'], wrap_format)
+            # self.col += 1
             # Finding Name
             self.worksheet.write(self.row, self.col, finding['title'], wrap_format)
             self.col += 1
