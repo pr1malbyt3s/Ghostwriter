@@ -43,22 +43,22 @@ class Reportwriter():
     report_type = None
     # Color codes used for finding severity
     # Blue
-    informational_color = '8eaadb'
-    informational_color_hex = [0x83, 0xaa, 0xdb]
+    informational_color = '005de0'
+    informational_color_hex = [0x00, 0x5d, 0xe0]
     # Green
-    low_color = 'a8d08d'
-    low_color_hex = [0xa8, 0xd0, 0x8d]
+    low_color = 'f9e300'
+    low_color_hex = [0xf9, 0xe3, 0x00]
     # Orange
-    medium_color = 'f4b083'
-    medium_color_hex = [0xf4, 0xb0, 0x83]
+    medium_color = 'ff7f0e'
+    medium_color_hex = [0xff, 0x7f, 0x0e]
     # Red
-    high_color = 'ff7e79'
-    high_color_hex = [0xff, 0x7e, 0x79]
+    high_color = 'f00f01'
+    high_color_hex = [0xf0, 0x0f, 0x01]
     # Purple
-    critical_color = '966FD6'
-    critical_color_hex = [0x96, 0x6f, 0xd6]
+    critical_color = 'A0060D'
+    critical_color_hex = [0xa0, 0x06, 0x0d]
     # Picture border color
-    border_color = '2d2b6b'
+    border_color = '000000'
     border_color_hex = [0x45, 0x43, 0x107]
     # Picture border weight – 12700 is equal to the 1pt weight in Word
     border_weight = '12700'
