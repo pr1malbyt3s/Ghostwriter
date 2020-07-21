@@ -999,6 +999,7 @@ def convert_finding(request, pk):
                 'recommendation': finding_instance.recommendation,
                 'source': finding_instance.source,
                 'tools': finding_instance.tools,
+                'additional_guidance': finding_instance.additional_guidance,
                 'references': finding_instance.references,
                 'severity': finding_instance.severity,
                 'finding_type': finding_instance.finding_type
