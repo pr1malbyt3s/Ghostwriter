@@ -45,11 +45,11 @@
 
     --burned-color: #FF7E79;
     --healthy-color: #A8D08D;
-    --info-rating-color: #8EAADB;
-    --low-rating-color: #A8D08D;
-    --med-rating-color: #F4B083;
-    --high-rating-color: #FF7E79;
-    --crit-rating-color: #966FD6;
+    --info-rating-color: #005DE0;
+    --low-rating-color: #F9E300;
+    --med-rating-color: #FF7FOE;
+    --high-rating-color: #F00F01;
+    --crit-rating-color: #A0060D;
     --neutral-rating-color: #7a7a7a;
 
     --navbar-background-color: #fff;
