@@ -18,5 +18,5 @@ class FindingResource(resources.ModelResource):
         export_order = (
             'id', 'severity', 'finding_type', 'title', 'details',
             'risk_determination', 'source', 'tools',
-            'references', 'finding_guidance'
+            'references', 'additional_guidance'
             )
