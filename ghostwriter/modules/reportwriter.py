@@ -1268,10 +1268,9 @@ class Reportwriter():
         # Create header row for findings
         self.col = 0
         # Need to add component/type.
-        headers = ['Risk Rating', 'Finding', 'Details',
+        headers = ['Risk Rating', 'Type', 'Finding', 'Details',
                    'Risk Determination', 'Systems', 'Source',
-                   'Tools', 'Recommendation', 'Additional Guidance',
-                   'Evidence', 'References']
+                   'Tools', 'Recommendation', 'Additional Guidance', 'References']
         for header in headers:
             self.worksheet.write(0, self.col, header, bold_format)
             self.col += 1
@@ -1302,8 +1301,8 @@ class Reportwriter():
             self.worksheet.write(self.row, self.col, finding['severity'], severity_format)
             self.col += 1
             # Finding Type
-            # self.worksheet.write(self.row, self.col, finding['type'], wrap_format)
-            # self.col += 1
+            self.worksheet.write(self.row, self.col, finding['type'], wrap_format)
+            self.col += 1
             # Finding Name
             self.worksheet.write(self.row, self.col, finding['title'], wrap_format)
             self.col += 1
