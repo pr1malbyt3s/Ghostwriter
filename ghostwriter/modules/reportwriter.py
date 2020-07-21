@@ -134,8 +134,8 @@ class Reportwriter():
             report_dict['findings'][finding.id]['title'] = finding.title
             report_dict['findings'][finding.id]['severity'] = \
                 finding.severity.severity
-            #report_dict['findings'][finding.id]['type'] = \
-            #    finding.type
+            report_dict['findings'][finding.id]['finding_type'] = \
+                finding.finding_type
             if finding.affected_entities:
                 report_dict['findings'][finding.id]['affected_entities'] = \
                     finding.affected_entities
@@ -1301,7 +1301,7 @@ class Reportwriter():
             self.worksheet.write(self.row, self.col, finding['severity'], severity_format)
             self.col += 1
             # Finding Type
-            self.worksheet.write(self.row, self.col, finding['type'], wrap_format)
+            self.worksheet.write(self.row, self.col, finding['finding_type'], wrap_format)
             self.col += 1
             # Finding Name
             self.worksheet.write(self.row, self.col, finding['title'], wrap_format)
