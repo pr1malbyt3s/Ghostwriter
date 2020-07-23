@@ -61,7 +61,7 @@
             <div id="collapseLikelihood" class="finding-collapse collapse show" aria-labelledby="likelihood">
                 <div class="finding-card card-body">
                     {% if finding.likelihood %}
-                        {{ finding.risk_likelihood|safe }}
+                        {{ finding.likelihood|safe }}
                     {% else %}
                         <p>Likelihood write-up is needed.</p>
                     {% endif %}
