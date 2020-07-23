@@ -104,8 +104,14 @@ class Finding(models.Model):
         null=True,
         blank=True,
         help_text='Provide a description for this finding that introduces it')
-    risk_determination = HTMLField(
-        'Risk Determination',
+    likelihood = HTMLField(
+        'Likelihood',
+        help_text='Describe the likelihood of this finding on the affected '
+        'entities',
+        null=True,
+        blank=True)
+    impact = HTMLField(
+        'Impact',
         help_text='Describe the impact of this finding on the affected '
         'entities',
         null=True,
@@ -253,8 +259,14 @@ class ReportFindingLink(models.Model):
         null=True,
         blank=True,
         help_text='Provide a description for this finding that introduces it')
-    risk_determination = HTMLField(
-        'Risk Determination',
+    likelihood = HTMLField(
+        'Likelihood',
+        help_text='Describe the likelihood of this finding on the affected '
+        'entities',
+        null=True,
+        blank=True)
+    impact = HTMLField(
+        'Impact',
         help_text='Describe the impact of this finding on the affected '
         'entities',
         null=True,
