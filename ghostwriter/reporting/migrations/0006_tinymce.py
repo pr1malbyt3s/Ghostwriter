@@ -19,8 +19,13 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='finding',
-            name='risk_determination',
-            field=tinymce.models.HTMLField(blank=True, help_text='Describe the impact of this finding on the affected entities', null=True, verbose_name='Risk Determination'),
+            name='likelihood',
+            field=tinymce.models.HTMLField(blank=True, help_text='Describe the likelihood of this finding on the affected entities', null=True, verbose_name='Likelihood'),
+        ),
+        migrations.AlterField(
+            model_name='finding',
+            name='impact',
+            field=tinymce.models.HTMLField(blank=True, help_text='Describe the impact of this finding on the affected entities', null=True, verbose_name='Impact'),
         ),
         migrations.AlterField(
             model_name='finding',
