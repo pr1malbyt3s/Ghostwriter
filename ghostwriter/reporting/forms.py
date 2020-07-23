@@ -37,7 +37,9 @@ class FindingCreateForm(forms.ModelForm):
             'What tools were used ...'
         self.fields['details'].widget.attrs['placeholder'] = \
             'What is this ...'
-        self.fields['risk_determination'].widget.attrs['placeholder'] = \
+        self.fields['likelihood'].widget.attrs['placeholder'] = \
+            'What is the likelihood ...'
+        self.fields['impact'].widget.attrs['placeholder'] = \
             'What is the impact ...'
         self.fields['references'].widget.attrs['placeholder'] = \
             'Some useful links and references ...'
