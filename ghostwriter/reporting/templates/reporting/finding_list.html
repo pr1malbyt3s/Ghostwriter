@@ -91,8 +91,8 @@
                                 <td id="cols" class="critical"><p style="display: none">{{ finding.severity.weight }}</p>{{ finding.severity.severity }}</td>
                             {% elif finding.severity.severity == "High" %}
                                 <td id="cols" class="high"><p style="display: none">{{ finding.severity.weight }}</p>{{ finding.severity.severity }}</td>
-                            {% elif finding.severity.severity == "Medium" %}
-                                <td id="cols" class="medium"><p style="display: none">{{ finding.severity.weight }}</p>{{ finding.severity.severity }}</td>
+                            {% elif finding.severity.severity == "Moderate" %}
+                                <td id="cols" class="moderate"><p style="display: none">{{ finding.severity.weight }}</p>{{ finding.severity.severity }}</td>
                             {% elif finding.severity.severity == "Low" %}
                                 <td id="cols" class="low"><p style="display: none">{{ finding.severity.weight }}</p>{{ finding.severity.severity }}</td>
                             {% else %}
