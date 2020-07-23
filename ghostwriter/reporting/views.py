@@ -318,7 +318,8 @@ def assign_finding(request, pk):
         finding = Finding.objects.get(pk=pk)
         report_link = ReportFindingLink(title=finding.title,
                                         details=finding.details,
-                                        risk_determination=finding.risk_determination,
+                                        likelihood=finding.likelihood,
+                                        impact=finding.impact,
                                         recommendation=finding.recommendation,
                                         source=finding.source,
                                         tools=finding.tools,
@@ -371,7 +372,8 @@ def assign_blank_finding(request, pk):
         return HttpResponseRedirect(reverse('reporting:reports'))
     report_link = ReportFindingLink(title='Blank Template',
                                     details='',
-                                    risk_determination='',
+                                    likelihood='',
+                                    impact='',
                                     recommendation='',
                                     source='',
                                     tools='',
@@ -995,7 +997,8 @@ def convert_finding(request, pk):
         form = FindingCreateForm(initial={
                 'title': finding_instance.title,
                 'details': finding_instance.details,
-                'risk_determination': finding_instance.risk_determination,
+                'likelihood': finding_instance.likelihood,
+                'impact': finding_instance.impact,
                 'recommendation': finding_instance.recommendation,
                 'source': finding_instance.source,
                 'tools': finding_instance.tools,
