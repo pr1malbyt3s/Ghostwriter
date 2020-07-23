@@ -49,8 +49,8 @@ class Reportwriter():
     low_color = 'f9e300'
     low_color_hex = [0xf9, 0xe3, 0x00]
     # Orange
-    medium_color = 'ff7f0e'
-    medium_color_hex = [0xff, 0x7f, 0x0e]
+    moderate_color = 'ff7f0e'
+    moderate_color_hex = [0xff, 0x7f, 0x0e]
     # Red
     high_color = 'f00f01'
     high_color_hex = [0xf0, 0x0f, 0x01]
@@ -1072,8 +1072,8 @@ class Reportwriter():
                 finding_color = self.informational_color
             elif finding['severity'].lower() == 'low':
                 finding_color = self.low_color
-            elif finding['severity'].lower() == 'medium':
-                finding_color = self.medium_color
+            elif finding['severity'].lower() == 'moderate':
+                finding_color = self.moderate_color
             elif finding['severity'].lower() == 'high':
                 finding_color = self.high_color
             elif finding['severity'].lower() == 'critical':
@@ -1292,8 +1292,8 @@ class Reportwriter():
                 severity_format.set_bg_color(self.informational_color)
             elif finding['severity'].lower() == "low":
                 severity_format.set_bg_color(self.low_color)
-            elif finding['severity'].lower() == "medium":
-                severity_format.set_bg_color(self.medium_color)
+            elif finding['severity'].lower() == "moderate":
+                severity_format.set_bg_color(self.moderate_color)
             elif finding['severity'].lower() == "high":
                 severity_format.set_bg_color(self.high_color)
             elif finding['severity'].lower() == "critical":
@@ -1389,10 +1389,10 @@ class Reportwriter():
             self.low_color_hex[0],
             self.low_color_hex[1],
             self.low_color_hex[2])
-        self.ppt_color_medium = pptx.dml.color.RGBColor(
-            self.medium_color_hex[0],
-            self.medium_color_hex[1],
-            self.medium_color_hex[2])
+        self.ppt_color_moderate = pptx.dml.color.RGBColor(
+            self.moderate_color_hex[0],
+            self.moderate_color_hex[1],
+            self.moderate_color_hex[2])
         self.ppt_color_high = pptx.dml.color.RGBColor(
             self.high_color_hex[0],
             self.high_color_hex[1],
@@ -1406,7 +1406,7 @@ class Reportwriter():
         findings_stats = {
             'Critical': 0,
             'High': 0,
-            'Medium': 0,
+            'Moderate': 0,
             'Low': 0,
             'Informational': 0
         }
@@ -1532,7 +1532,7 @@ class Reportwriter():
                     risk_cell.fill.fore_color.rgb = self.ppt_color_info
                 elif finding['severity'].lower() == "low":
                     risk_cell.fill.fore_color.rgb = self.ppt_color_low
-                elif finding['severity'].lower() == "medium":
+                elif finding['severity'].lower() == "moderate":
                     risk_cell.fill.fore_color.rgb = self.ppt_color_medium
                 elif finding['severity'].lower() == "high":
                     risk_cell.fill.fore_color.rgb = self.ppt_color_high
