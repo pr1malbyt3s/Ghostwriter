@@ -11,12 +11,12 @@ class FindingResource(resources.ModelResource):
         model = Finding
         skip_unchanged = True
         fields = (
-            'id', 'title', 'details', 'risk_determination',
+            'id', 'title', 'details', 'likelihood', 'impact',
             'recommendation', 'source', 'tools',
             'references', 'additional_guidance'
             )
         export_order = (
             'id', 'severity', 'finding_type', 'title', 'details',
-            'risk_determination', 'source', 'tools',
+            'likelihood', 'impact', 'source', 'tools',
             'references', 'additional_guidance'
             )
