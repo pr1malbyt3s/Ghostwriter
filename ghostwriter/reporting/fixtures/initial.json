@@ -19,7 +19,7 @@
         "model": "reporting.severity",
         "pk": 3,
         "fields": {
-            "severity": "Medium",
+            "severity": "Moderate",
             "weight": 3
         }
     },
