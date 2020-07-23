@@ -47,7 +47,7 @@
     --healthy-color: #A8D08D;
     --info-rating-color: #005DE0;
     --low-rating-color: #F9E300;
-    --med-rating-color: #FF7F0E;
+    --mod-rating-color: #FF7F0E;
     --high-rating-color: #F00F01;
     --crit-rating-color: #A0060D;
     --neutral-rating-color: #7a7a7a;
@@ -539,8 +539,8 @@ p.severity-box.high {
     background-color: var(--high-rating-color);
 }
 
-p.severity-box.medium {
-    background-color: var(--med-rating-color);
+p.severity-box.moderate {
+    background-color: var(--mod-rating-color);
 }
 
 p.severity-box.low {
@@ -561,8 +561,8 @@ p.severity-box.info {
     font-weight: 900;
 }
 
-.medium {
-    color: var(--med-rating-color);
+.moderate {
+    color: var(--mod-rating-color);
     font-weight: 900;
 }
 
@@ -591,8 +591,8 @@ p.severity-box.info {
     font-weight: 900;
 }
 
-.medium-background {
-    background-color: var(--med-rating-color);
+.moderate-background {
+    background-color: var(--mod-rating-color);
     font-weight: 900;
 }
 
