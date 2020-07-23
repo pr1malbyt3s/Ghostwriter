@@ -144,8 +144,10 @@ class Reportwriter():
                     '<p>Must Be Provided</p>'
             report_dict['findings'][finding.id]['details'] = \
                 finding.details
-            report_dict['findings'][finding.id]['risk_determination'] = \
-                finding.risk_determination
+            report_dict['findings'][finding.id]['likelihood'] = \
+                finding.likelihood
+            report_dict['findings'][finding.id]['impact'] = \
+                finding.impact
             report_dict['findings'][finding.id]['recommendation'] = \
                 finding.recommendation
             report_dict['findings'][finding.id]['source'] = \
@@ -1061,8 +1063,10 @@ class Reportwriter():
             finding['tools'] = BeautifulSoup(finding['tools'], 'lxml').text
             # Process Details section
             finding['details'] = BeautifulSoup(finding['details'], 'lxml').text
-            # Process Risk Determination section
-            finding['risk_determination'] = BeautifulSoup(finding['risk_determination'], 'lxml').text
+            # Process Likelihood section
+            finding['likelihood'] = BeautifulSoup(finding['likelihood'], 'lxml').text
+            # Process Impact section
+            finding['impact'] = BeautifulSoup(finding['impact'], 'lxml').text
             # Process References section
             if finding['references']:
                 finding['references'] = BeautifulSoup(finding['references'], 'lxml').text
@@ -1160,8 +1164,10 @@ class Reportwriter():
             bottomtable = self.spenny_doc.add_table(rows=5, cols=2)
             bottomtable.cell(0, 0).text = 'Details'
             #bottomtable.cell(0, 1).text = self.process_text_xml(finding['details'], finding)
-            bottomtable.cell(1, 0).text = 'Risk Determination'
-            bottomtable.cell(1, 1).text = self.process_text_xml(finding['risk_determination'], finding).text
+            bottomtable.cell(1, 0).text = 'Likelihood'
+            bottomtable.cell(1, 1).text = self.process_text_xml(finding['Likelihood'], finding).text
+            bottomtable.cell(1, 0).text = 'Impact'
+            bottomtable.cell(1, 1).text = self.process_text_xml(finding['Impact'], finding).text
             bottomtable.cell(2, 0).text = 'Evidence'
             #bottomtable.cell(2, 1).text = self.process_text_xml(finding['evidence'], finding)
             bottomtable.cell(3, 0).text = 'Additional Guidance'
@@ -1187,9 +1193,12 @@ class Reportwriter():
             p = self.spenny_doc.add_paragraph('Details')
             p.style = 'Heading 4 - Finding'
             self.process_text_xml(finding['details'], finding)
-            p = self.spenny_doc.add_paragraph('Risk Determination')
+            p = self.spenny_doc.add_paragraph('Likelihood')
             p.style = 'Heading 4 - Finding'
-            self.process_text_xml(finding['risk_determination'], finding)
+            self.process_text_xml(finding['likelihood'], finding)
+            p = self.spenny_doc.add_paragraph('Impact')
+            p.style = 'Heading 4 - Finding'
+            self.process_text_xml(finding['impact'], finding)
             p = self.spenny_doc.add_paragraph('Evidence')
             p.style = 'Heading 4 - Finding'
             if finding['additional_guidance']:
@@ -1310,9 +1319,13 @@ class Reportwriter():
             self.process_text_xlsx(
                 finding['details'], wrap_format, finding)
             self.col += 1
-            # Risk Determination
+            # Likelihood
             self.process_text_xlsx(
-                finding['risk_determination'], wrap_format, finding)
+                finding['likelihood'], wrap_format, finding)
+            self.col += 1
+            # Impact
+            self.process_text_xlsx(
+                finding['impact'], wrap_format, finding)
             self.col += 1
              # Affected Asset
             if finding['affected_entities']:
