@@ -51,19 +51,37 @@
 
     <div id="accordion" class="myaccordion">
 
-        <!-- Risk Determination -->
+        <!-- Likelihood -->
+        <div class="card">
+            <div class="card-header" id="likelihood" data-toggle="collapse" data-target="#collapseLikelihood" aria-expanded="true">
+                <a class="accordion-toggle btn btn-link" data-toggle="collapse" data-target="#collapseLikelihood" aria-expanded="false" aria-controls="collapseLikelihood">
+                    Likelihood
+                </a>
+            </div>
+            <div id="collapseLikelihood" class="finding-collapse collapse show" aria-labelledby="likelihood">
+                <div class="finding-card card-body">
+                    {% if finding.likelihood %}
+                        {{ finding.risk_likelihood|safe }}
+                    {% else %}
+                        <p>Likelihood write-up is needed.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+      
+      <!-- Impact -->
         <div class="card">
             <div class="card-header" id="impact" data-toggle="collapse" data-target="#collapseImpact" aria-expanded="true">
                 <a class="accordion-toggle btn btn-link" data-toggle="collapse" data-target="#collapseImpact" aria-expanded="false" aria-controls="collapseImpact">
-                    Risk Determination
+                    Impact
                 </a>
             </div>
             <div id="collapseImpact" class="finding-collapse collapse show" aria-labelledby="impact">
                 <div class="finding-card card-body">
-                    {% if finding.risk_determination %}
-                        {{ finding.risk_determination|safe }}
+                    {% if finding.impact %}
+                        {{ finding.impact|safe }}
                     {% else %}
-                        <p>Risk Determination write-up is needed.</p>
+                        <p>Impact write-up is needed.</p>
                     {% endif %}
                 </div>
             </div>
